@@ -70,10 +70,31 @@ def create_xyz_file(filename):
         f.write("C " + str(coords[i][0]) + " " + str(coords[i][1]) + " " + str(coords[i][2]) + "\n")
     f.close()
 
+def compute_pairwise_potential(r):
+    return 4 * epsilon * (math.pow((sigma * 1.0 / r), 12) - math.pow((sigma * 1.0 / r), 6))
+
+def minimum(a, b, c, d, e, f, g):
+    return min(a, min(b, min(c, min(d, min(e, min(f, g))))))
+
+def min_image_distance(x1, y1, z1, x2, y2, z2):
+    return minimum(compute_radius(x1, y1, z1, x2, y2, z2),\
+    compute_radius(x1 - Lx, y1 , z1, x2, y2, z2),\
+    compute_radius(x1 + Lx, y1 , z1, x2, y2, z2),\
+    compute_radius(x1, y1 - Ly, z1, x2, y2, z2),\
+    compute_radius(x1, y1 + Ly, z1, x2, y2, z2),\
+    compute_radius(x1, y1, z1 - Lz, x2, y2, z2),\
+    compute_radius(x1, y1, z1 + Lz, x2, y2, z2))
+
+def compute_total_potential_energy():
+    res = 0.0
+    for i in range(N):
+        for j in range(i + 1, N):
+            res = res + compute_pairwise_potential(min_image_distance(coords[j][0], coords[j][1], coords[j][2], coords[i][0], coords[i][1], coords[i][2]))
+    return res
+
 if __name__ == "__main__":
     print("Lennard Jones System")
     generate_random_config()
     create_xyz_file("abc.xyz")
-
-    
+    print(compute_total_potential_energy())
     exit()
