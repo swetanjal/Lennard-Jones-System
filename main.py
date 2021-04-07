@@ -92,9 +92,87 @@ def compute_total_potential_energy():
             res = res + compute_pairwise_potential(min_image_distance(coords[j][0], coords[j][1], coords[j][2], coords[i][0], coords[i][1], coords[i][2]))
     return res
 
+def get_minimum_image_coords(x1, y1, z1, x2, y2, z2):
+    min_d = 1000000000000000
+    coords = []
+    r = compute_radius(x1, y1, z1, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1, y1, z1]
+    r = compute_radius(x1 - Lx, y1 , z1, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1 - Lx, y1, z1]
+    r = compute_radius(x1 + Lx, y1 , z1, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1 + Lx, y1, z1]
+    r = compute_radius(x1, y1 - Ly, z1, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1, y1 - Ly, z1]
+    r = compute_radius(x1, y1 + Ly, z1, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1, y1 + Ly, z1]
+    r = compute_radius(x1, y1, z1 - Lz, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1, y1, z1 - Lz]
+    r = compute_radius(x1, y1, z1 + Lz, x2, y2, z2)
+    if r < min_d:
+        min_d = r
+        coords = [x1, y1, z1 + Lz]
+    return coords
+
+def compute_gradient():
+    grad_xs = []
+    grad_ys = []
+    grad_zs = []
+    for i in range(N):
+        gradx = 0.0
+        grady = 0.0
+        gradz = 0.0
+        for j in range(i + 1, N):
+            new_coords = get_minimum_image_coords(coords[j][0], coords[j][1], coords[j][2], coords[i][0], coords[i][1], coords[i][2])    
+            r = compute_radius(coords[i][0], coords[i][1], coords[i][2], new_coords[0], new_coords[1], new_coords[2])
+            gradx = gradx + 24 * epsilon * math.pow((sigma * 1.0 / r), 6) * (1.0 / (r * r)) * \
+            (2 * math.pow((sigma * 1.0 / r), 6) - 1) * (coords[i][0] - new_coords[0])
+
+            grady = grady + 24 * epsilon * math.pow((sigma * 1.0 / r), 6) * (1.0 / (r * r)) * \
+            (2 * math.pow((sigma * 1.0 / r), 6) - 1) * (coords[i][1] - new_coords[1])
+
+            gradz = gradz + 24 * epsilon * math.pow((sigma * 1.0 / r), 6) * (1.0 / (r * r)) * \
+            (2 * math.pow((sigma * 1.0 / r), 6) - 1) * (coords[i][2] - new_coords[2])
+        grad_xs.append(gradx)
+        grad_ys.append(grady)
+        grad_zs.append(gradz)   
+    return [grad_xs, grad_ys, grad_zs]
+
+def minimize_potential():
+    print("Minimizing the potential...")
+    # Current config which needs to be optimised...
+    learning_rate = 0.01
+    prev_potential = compute_total_potential_energy()
+    itr = 1
+    while True:
+        grads = compute_gradient()
+        for i in range(N):
+            coords[i][0] = coords[i][0] + learning_rate * grads[0][i]
+            coords[i][1] = coords[i][1] + learning_rate * grads[1][i]
+            coords[i][2] = coords[i][2] + learning_rate * grads[2][i]
+        curr_potential = compute_total_potential_energy()
+        print("Total LJ Potential Energy after iteration", itr, "=", curr_potential)
+        itr = itr + 1
+        if abs(curr_potential - prev_potential) <= 1e-3:
+            break
+        prev_potential = curr_potential
+    
 if __name__ == "__main__":
     print("Lennard Jones System")
     generate_random_config()
     create_xyz_file("abc.xyz")
-    print(compute_total_potential_energy())
+    print("Current total potential energy =", compute_total_potential_energy())
+    minimize_potential()
+    print("Total Potential Energy after Energy Minimization step =", compute_total_potential_energy())
     exit()
