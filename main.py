@@ -239,6 +239,7 @@ def velocity_verlet_integration():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--minimize-potential', type=bool, default=False)
     parser.add_argument('--initial-config', type=str, default=None)
     parser.add_argument('--initial-velocity', type=str, default=None)
     parser.add_argument('--temperature', type=float, default=300)
@@ -248,17 +249,23 @@ if __name__ == "__main__":
     create_xyz_file_coordinates("initial_config_coords.xyz")
 
     print("Current total potential energy =", compute_total_potential_energy())
-    # minimize_potential()
-    print("Total Potential Energy after Energy Minimization step =", compute_total_potential_energy())
-    create_xyz_file_coordinates("minimized_config_coords.xyz")
+    if opt.minimize_potential == True:
+        minimize_potential()
+        print("Total Potential Energy after Energy Minimization step =", compute_total_potential_energy())
+        create_xyz_file_coordinates("minimized_config_coords.xyz")
+    
     generate_initial_velocities(opt.initial_velocity, opt.temperature)
     create_xyz_file_velocities("initial_config_velocities.xyz")
-    f = open('argon.pdb', 'w')
+    f = open('argon_coordinates.pdb', 'w')
     f.write("HEADER\n")
+    fb = open('argon_velocities.pdb', 'w')
+    fb.write("HEADER\n")
     for i in range(2000):
         for j in range(N):
             f.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(coords[j][0]) + " " + str(coords[j][1]) + " " + str(coords[j][2]) + "\n")
+            fb.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(vels[j][0]) + " " + str(vels[j][1]) + " " + str(vels[j][2]) + "\n")
         f.write('END\n')
+        fb.write('END\n')
         velocity_verlet_integration()
         print("Simulating frame", i)
     exit()
