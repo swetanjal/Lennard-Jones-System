@@ -1,6 +1,9 @@
 import math
 import matplotlib.pyplot as plt
 import sys
+if len(sys.argv) != 2:
+    print('Incorrect usage. Refer README.')
+    exit()
 f = open(sys.argv[1])
 lines = f.readlines()
 frames = []

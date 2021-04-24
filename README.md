@@ -30,3 +30,15 @@ When option minimize-potential is set to True, step 3 i.e total potential energy
 Use initial-config flag to load coordinates of particles from pdb file.
 
 Use initial-velocity flag to load velocity of particles from pdb file.
+
+### Instructions to generate mean square displacement plot:
+
+    python3 msd.py argon_coordinates.pdb
+
+### Instructions to generate velocity autocorrelation plot:
+
+    python3 velocity_corr.py argon_velocities.pdb
+
+### Instructions to generate velocity autocorrelation plot:
+
+    python3 vann_hove.py argon_coordinates.pdb

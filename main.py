@@ -239,6 +239,7 @@ def velocity_verlet_integration():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--frames', type=int, default=2000)
     parser.add_argument('--minimize-potential', type=bool, default=False)
     parser.add_argument('--initial-config', type=str, default=None)
     parser.add_argument('--initial-velocity', type=str, default=None)
@@ -260,7 +261,7 @@ if __name__ == "__main__":
     f.write("HEADER\n")
     fb = open('argon_velocities.pdb', 'w')
     fb.write("HEADER\n")
-    for i in range(2000):
+    for i in range(opt.frames):
         for j in range(N):
             f.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(coords[j][0]) + " " + str(coords[j][1]) + " " + str(coords[j][2]) + "\n")
             fb.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(vels[j][0]) + " " + str(vels[j][1]) + " " + str(vels[j][2]) + "\n")

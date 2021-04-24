@@ -1,6 +1,10 @@
 import math
 import matplotlib.pyplot as plt
 import sys
+if len(sys.argv) != 2:
+    print('Incorrect usage. Refer README.')
+    exit()
+
 f = open(sys.argv[1])
 lines = f.readlines()
 frames = []
@@ -44,4 +48,4 @@ plt.ylabel('Mean Square Displacement')
 plt.plot(res)
 plt.show()
 
-print("Diffusion Coefficient = ", (res[90] - res[225]) / (90 - 225))
+print("Diffusion Coefficient = ", (res[1900] - res[880]) / (1900-880))
