@@ -39,6 +39,6 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 
     python3 velocity_corr.py argon_velocities.pdb
 
-### Instructions to generate velocity autocorrelation plot:
+### Instructions to generate Vann Hove correlation plot:
 
     python3 vann_hove.py argon_coordinates.pdb
