@@ -22,6 +22,9 @@ coordinates and velocities
 correlation function, and dynamic structure factor
 
 ## Instructions to run code:
+
+    # Changing into the src directory
+    cd src
     
     python3 main.py [--minimize-potential True|False] [--initial-config filename] [--initial-velocity filename] [--temperature value_in_K]
 
@@ -42,3 +45,7 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 ### Instructions to generate Vann Hove correlation plot:
 
     python3 vann_hove.py argon_coordinates.pdb
+
+### Instructions to generate Dynamic Structure Factor
+
+    ./computeStructureFactor -i sample_s_k_full.in
