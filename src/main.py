@@ -74,9 +74,8 @@ def generate_random_config(file):
 def create_xyz_file_coordinates(filename, mode = "w"):
     print("Creating xyz file of coordinates...")
     f = open(filename, mode)
-    if mode == "w":
-        f.write(str(N) + "\n")
-        f.write("System of Argon Gas\n")
+    f.write(str(N) + "\n")
+    f.write("System of Argon Gas\n")
     for i in range(N):
         f.write("C " + str(coords[i][0]) + " " + str(coords[i][1]) + " " + str(coords[i][2]) + "\n")
     f.close()
@@ -262,12 +261,12 @@ if __name__ == "__main__":
     f.write("HEADER\n")
     fb = open('../outputs/argon_velocities.pdb', 'w')
     fb.write("HEADER\n")
-    create_xyz_file_coordinates("traj.xyz", "w")
+    create_xyz_file_coordinates("../outputs/traj.xyz", "w")
     for i in range(opt.frames):
         for j in range(N):
             f.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(coords[j][0]) + " " + str(coords[j][1]) + " " + str(coords[j][2]) + "\n")
             fb.write("ATOM " + str(j + 1) + " Ar TIP3W " + str(j + 1) + " " + str(vels[j][0]) + " " + str(vels[j][1]) + " " + str(vels[j][2]) + "\n")
-        create_xyz_file_coordinates("traj.xyz", "a")
+        create_xyz_file_coordinates("../outputs/traj.xyz", "a")
         f.write('END\n')
         fb.write('END\n')
         velocity_verlet_integration()
