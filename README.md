@@ -51,3 +51,7 @@ Use initial-velocity flag to load velocity of particles from pdb file.
     ./computeStructureFactor -i sample_s_k_full.in
 
     python3 plot_structure_factor.py ../outputs/traj_out.txt
+
+### Instructions to generate Dynamic Structure Factor(Double Fourier Transform of Van Hove Correlation Fn.)
+
+    python3 structure_factor.py ../outputs/argon_coordinates.pdb
