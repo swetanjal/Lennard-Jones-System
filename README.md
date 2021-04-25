@@ -56,4 +56,13 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 
     python3 structure_factor.py ../outputs/argon_coordinates.pdb
 
+## Description of files generated:
+
+1. argon_coordinates.pdb : A PDB file containing the coordinates of trajectory of all N atoms.
+2. argon_velocities.pdb : A PDB file containing the velocity trajectories of all N atoms.
+3. initial_config_coords.xyz : A file in xyz format which contains coordinates of N atoms, generated randomly adhering to the constraints given in the problem statement. This generated file can be used to load initial coordinate configuration into the system.
+4. initial_config_velocities.xyz: A file in xyz format which contains initial velocities of each of the N atoms sampled from Maxwell Boltzmann Velocity Distribution. This file can be used to load the inititial velocity configuration into the system.
+5. minimized_config_coords.xyz : A file in xyz format which contains the coordinates of N atoms after the Potential Energy Minimization step.
+6. traj.xyz : A file in xyz format which contains the coordinate trajectory of each of the N atoms.
+
 ## README: https://docs.google.com/document/d/1Ktl6CnwiAqsZnHV3XtD3a-qb3JYfnMJgpoVlE54ZoxU/edit?usp=sharing

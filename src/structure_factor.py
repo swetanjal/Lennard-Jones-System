@@ -69,7 +69,9 @@ As = np.array(As)
 res = np.fft.fft2(As)
 
 print(res.shape)
-
+plt.title('Dynamic Structure Factor absolute value vs k')
+plt.xlabel('k')
+plt.ylabel('S(k)')
 for i in range(As.shape[0]):
     xs = []
     ys = []
