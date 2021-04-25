@@ -49,3 +49,5 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 ### Instructions to generate Dynamic Structure Factor
 
     ./computeStructureFactor -i sample_s_k_full.in
+
+    python3 plot_structure_factor.py ../outputs/traj_out.txt
