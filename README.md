@@ -1,5 +1,7 @@
 # Lennard Jones System
 
+## Link to repo: https://github.com/swetanjal/Lennard-Jones-System
+
 ## Specification of the system:
 
 - Number of partciles (N) = 108
