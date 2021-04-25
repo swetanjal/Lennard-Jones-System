@@ -60,7 +60,7 @@ def compute(t):
     return ys
 
 As = []
-for i in range(0, T, 50):
+for i in range(0, T, 80):
     print(i)
     ys = compute(i)
     As.append(np.array(ys))
