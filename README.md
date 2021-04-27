@@ -28,10 +28,10 @@ correlation function, and dynamic structure factor
     # Changing into the src directory
     cd src
     
-    python3 main.py [--minimize-potential True|False] [--initial-config filename] [--initial-velocity filename] [--temperature value_in_K]
+    python3 main.py [--minimize-potential] [--initial-config filename] [--initial-velocity filename] [--frames n_frames] [--temperature value_in_K]
 
     # Example Usage
-    python3 main.py --minimize-potential True
+    python3 main.py --minimize-potential True --frames 250
     
 When option minimize-potential is set to True, step 3 i.e total potential energy minimization step takes place and the configuration is saved after that in corresponding pdb files.
 
