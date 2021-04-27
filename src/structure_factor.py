@@ -2,8 +2,8 @@ import math
 import matplotlib.pyplot as plt
 import sys
 import numpy as np
-T = 2000
-if len(sys.argv) != 2:
+T = int(sys.argv[2])
+if len(sys.argv) != 3:
     print('Incorrect usage. Refer README.')
     exit()
 
