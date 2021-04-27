@@ -30,6 +30,9 @@ correlation function, and dynamic structure factor
     
     python3 main.py [--minimize-potential True|False] [--initial-config filename] [--initial-velocity filename] [--temperature value_in_K]
 
+    # Example Usage
+    python3 main.py --minimize-potential True
+    
 When option minimize-potential is set to True, step 3 i.e total potential energy minimization step takes place and the configuration is saved after that in corresponding pdb files.
 
 Use initial-config flag to load coordinates of particles from pdb file.
@@ -38,15 +41,15 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 
 ### Instructions to generate mean square displacement plot:
 
-    python3 msd.py argon_coordinates.pdb
+    python3 msd.py ../outputs/argon_coordinates.pdb
 
 ### Instructions to generate velocity autocorrelation plot:
 
-    python3 velocity_corr.py argon_velocities.pdb
+    python3 velocity_corr.py ../outputs/argon_velocities.pdb
 
 ### Instructions to generate Vann Hove correlation plot:
 
-    python3 vann_hove.py argon_coordinates.pdb
+    python3 vann_hove.py ../outputs/argon_coordinates.pdb
 
 ### Instructions to generate Dynamic Structure Factor
 
@@ -58,7 +61,7 @@ Use initial-velocity flag to load velocity of particles from pdb file.
 
     python3 structure_factor.py ../outputs/argon_coordinates.pdb
 
-## Description of files generated:
+## Description of files generated in outputs:
 
 1. argon_coordinates.pdb : A PDB file containing the coordinates of trajectory of all N atoms.
 2. argon_velocities.pdb : A PDB file containing the velocity trajectories of all N atoms.
