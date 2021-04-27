@@ -240,7 +240,7 @@ def velocity_verlet_integration():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--frames', type=int, default=2000)
-    parser.add_argument('--minimize-potential', type=bool, default=False)
+    parser.add_argument('--minimize-potential', action='store_true', default=False)
     parser.add_argument('--initial-config', type=str, default=None)
     parser.add_argument('--initial-velocity', type=str, default=None)
     parser.add_argument('--temperature', type=float, default=300)
