@@ -51,11 +51,10 @@ def compute(t):
                         hit = hit + 1
             res = res + hit
             freq = freq + 1
-	if freq == 0:
-		return []        
-	res = res * 1.0 / freq
+        if freq == 0:
+            break
+        res = res * 1.0 / freq
         res = res * 1.0 / (N*N*N)
-        
         ys.append(res)
     return ys
 
@@ -81,4 +80,4 @@ ys = compute(250)
 plt.plot(ys, label = "t = 250")
 plt.legend(loc = 'upper right')
 plt.show()
-plt.savefig('vann_hove.png')
+# plt.savefig('vann_hove.png')
