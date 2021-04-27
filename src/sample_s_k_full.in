@@ -16,7 +16,7 @@ atom_types 		    = C
 dimension                   = 3
 start_frame                 = 0
 #end_frame                   = 20
-number_of_frames_to_average = 2000
+number_of_frames_to_average = 200
 
 # wavevector parameters
 k_start_index               = 0
