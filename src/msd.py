@@ -48,4 +48,4 @@ plt.ylabel('Mean Square Displacement')
 plt.plot(res)
 plt.show()
 
-print("Diffusion Coefficient = ", (res[1900] - res[880]) / (1900-880))
+print("Diffusion Coefficient = ", (res[len(res) - 1] - res[0]) / (len(res)))

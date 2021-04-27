@@ -51,7 +51,9 @@ def compute(t):
                         hit = hit + 1
             res = res + hit
             freq = freq + 1
-        res = res * 1.0 / freq
+	if freq == 0:
+		return []        
+	res = res * 1.0 / freq
         res = res * 1.0 / (N*N*N)
         
         ys.append(res)
